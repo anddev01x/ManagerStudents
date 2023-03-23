@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_home"
+    tools:context=".view.HomeAct">
+
+    <ImageView
+        android:id="@+id/imgview_mngclass"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="25dp"
+        app:srcCompat="@drawable/ic_mngclass"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imgview_mngstudent"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginEnd="25dp"
+        app:srcCompat="@drawable/ic_mngstudents"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imgview_website"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="175dp"
+        app:srcCompat="@drawable/ic_web"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imgview_detail"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        android:layout_gravity="center_vertical|end"
+        android:layout_marginTop="175dp"
+        android:layout_marginEnd="25dp"
+        app:srcCompat="@drawable/ic_detail"
+        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/tv_user"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_username"
+        android:layout_gravity="center"
+        android:layout_marginBottom="190dp"
+        android:textSize="19sp"
+        tools:ignore="TextContrastCheck" />
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_logout"
+        android:layout_gravity="center"
+        android:layout_marginBottom="160dp"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        tools:ignore="TextContrastCheck" />
+</FrameLayout>

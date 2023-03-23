@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Manager Students</string>
+    <string name="tv_login">ĐĂNG NHẬP</string>
+    <string name="tv_user">TÀI KHOẢN</string>
+    <string name="tv_password">MẬT KHẨU</string>
+    <string name="bt_login">ĐĂNG NHẬP</string>
+    <string name="tv_singup">Chưa có tài khoản? Đăng ký</string>
+    <string name="img_university">Image\'s University</string>
+    <string name="tv_signup">ĐĂNG KÝ</string>
+    <string name="tv_repass">NHẬP LẠI MẬT KHẨU</string>
+    <string name="bt_signup">ĐĂNG KÝ</string>
+    <string name="tv_signin">Đã có tài khoản? Đăng nhập</string>
+    <string name="tv_name">HỌ TÊN</string>
+    <string name="tv_username">Nguyễn Trung Chiêu</string>
+    <string name="tv_logout">Đăng xuất</string>
+    <string name="txt_nameapp">Tên ứng dụng: Quản lý thông tin sinh viên</string>
+    <string name="txt_namestudents">Sinh viên thực hiện: Nguyễn Trung Chiêu\nHoàng Văn Trường</string>
+</resources>
