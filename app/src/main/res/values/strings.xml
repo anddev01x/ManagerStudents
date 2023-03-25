@@ -15,4 +15,12 @@
     <string name="tv_logout">Đăng xuất</string>
     <string name="txt_nameapp">Tên ứng dụng: Quản lý thông tin sinh viên</string>
     <string name="txt_namestudents">Sinh viên thực hiện: Nguyễn Trung Chiêu\nHoàng Văn Trường</string>
+    <string name="tv_id">Mã SV:</string>
+    <string name="tv_idst">A12345</string>
+    <string name="tv_namee">Họ tên:</string>
+    <string name="tv_fullname">Nguyễn Trung Chiêu</string>
+    <string name="tv_birth">Ngày sinh:</string>
+    <string name="tv_birthday">12/08/2001</string>
+    <string name="tv_idclass">Mã lớp:</string>
+    <string name="tv_idclasss">CNPM04</string>
 </resources>

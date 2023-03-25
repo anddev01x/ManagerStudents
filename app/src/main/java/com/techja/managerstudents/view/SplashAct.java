@@ -19,14 +19,11 @@ public class SplashAct extends AppCompatActivity {
     }
 
     private void Splash() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(SplashAct.this, LoginAct.class);
-                startActivity(intent);
-                Animatoo.INSTANCE.animateZoom(SplashAct.this);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent intent = new Intent(SplashAct.this, LoginAct.class);
+            startActivity(intent);
+            Animatoo.INSTANCE.animateZoom(SplashAct.this);
+            finish();
         }, 1800);
     }
 }

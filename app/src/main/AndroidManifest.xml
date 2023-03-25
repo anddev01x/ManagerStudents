@@ -15,6 +15,13 @@
         android:theme="@style/Theme.ManagerStudents"
         tools:targetApi="31">
         <activity
+            android:name=".view.InforStudentAct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.InforAppAct"
             android:exported="false">
             <meta-data

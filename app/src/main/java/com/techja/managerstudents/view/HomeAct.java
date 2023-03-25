@@ -1,22 +1,21 @@
 package com.techja.managerstudents.view;
 
 import static com.techja.managerstudents.view.LoginAct.USER_NAME;
-import static com.techja.managerstudents.view.RegisterAct.FULL_NAME;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
 import com.techja.managerstudents.databinding.ActHomeBinding;
 import com.techja.managerstudents.db.UserDAO;
 import com.techja.managerstudents.db.UserDatabase;
-import com.techja.managerstudents.db.UserEntity;
 
 public class HomeAct extends AppCompatActivity implements View.OnClickListener {
     private ActHomeBinding binding;
@@ -64,10 +63,21 @@ public class HomeAct extends AppCompatActivity implements View.OnClickListener {
             Animatoo.INSTANCE.animateZoom(HomeAct.this);
         }
         if (view.getId() == R.id.tv_logout) {
+            showDialogLogOut();
+        }
+    }
+    private void showDialogLogOut() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setTitle("THÔNG BÁO");
+        alertDialog.setMessage("Bạn muốn đăng xuất?");
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", (dialogInterface, i) -> {
             Intent intent = new Intent(this, LoginAct.class);
             startActivity(intent);
             Animatoo.INSTANCE.animateZoom(HomeAct.this);
-            finish();
-        }
+        });
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "CANCEL", (dialogInterface, i) -> alertDialog.dismiss());
+        alertDialog.show();
     }
 }

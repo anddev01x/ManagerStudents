@@ -1,7 +1,6 @@
 package com.techja.managerstudents.view;
 
 
-import static com.techja.managerstudents.view.RegisterAct.FULL_NAME;
 
 import android.content.Intent;
 import android.os.Bundle;
