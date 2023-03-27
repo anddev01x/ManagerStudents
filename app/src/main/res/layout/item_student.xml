@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="10dp"
@@ -56,13 +57,13 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="35dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@+id/tv_sv"
             android:text="@string/tv_fullname"
-            android:id="@+id/tv_name"
             android:textColor="@color/black"
             android:textSize="14sp" />
 

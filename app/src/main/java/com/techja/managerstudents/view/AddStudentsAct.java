@@ -38,7 +38,7 @@ public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
     }
 
     private void dataBase() {
-        studentDAO = Room.databaseBuilder(this, AppDatabase.class, "Student").
+        studentDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
                 allowMainThreadQueries()
                 .build().getStudentDAO();
     }

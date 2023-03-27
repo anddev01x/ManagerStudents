@@ -25,6 +25,6 @@
     <string name="tv_idclasss">CNPM04</string>
     <string name="edt_input">\tNhập tên sinh viên cần tìm kiếm</string>
     <string name="tv_addStudent">THÊM SINH VIÊN</string>
-    <string name="tv_done">DONE</string>
+    <string name="tv_done">THÊM</string>
     <string name="tv_selectAvt">Chọn ảnh đại diện</string>
 </resources>

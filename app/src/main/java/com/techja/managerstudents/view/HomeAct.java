@@ -41,7 +41,7 @@ public class HomeAct extends BaseAct<ActHomeBinding> {
     }
 
     private void dataBase() {
-        userDAO = Room.databaseBuilder(this, AppDatabase.class, "User").
+        userDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
                 allowMainThreadQueries()
                 .build().getUserDAO();
     }

@@ -1,8 +1,10 @@
 package com.techja.managerstudents.dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.techja.managerstudents.model.StudentEntity;
 
@@ -19,4 +21,16 @@ public interface StudentDAO {
 
     @Query("SELECT idStudent FROM tbl_Students WHERE idStudent = :idStudent")
     boolean getStudentById(String idStudent);
+
+
+    @Update
+    void upDateStudent(StudentEntity student);
+
+    @Query("SELECT idStudent FROM tbl_Students WHERE idStudent = :idStudent")
+    String getIdStudent(String idStudent);
+
+    @Delete
+    void deleteStudent(StudentEntity student);
+
+
 }

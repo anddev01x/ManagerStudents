@@ -25,7 +25,7 @@ public class LoginAct extends BaseAct<ActLoginBinding> {
     }
 
     private void dataBase() {
-        userDAO = Room.databaseBuilder(this, AppDatabase.class, "User").
+        userDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
                 allowMainThreadQueries()
                 .build().getUserDAO();
     }

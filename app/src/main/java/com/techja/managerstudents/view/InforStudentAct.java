@@ -1,14 +1,22 @@
 package com.techja.managerstudents.view;
 
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -19,15 +27,19 @@ import com.techja.managerstudents.databinding.ActInforStudentBinding;
 import com.techja.managerstudents.db.AppDatabase;
 import com.techja.managerstudents.model.StudentEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 
 public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
+    private ActivityResultLauncher<Intent> myLauncher;
+    public static final String DATA_STUDENT = "DATA_STUDENT";
     private StudentDAO studentDAO;
     private StudentAdapter studentAdapter;
     private List<StudentEntity> listStudents;
+    ItemTouchHelper.SimpleCallback simpleCallback;
 
     @Override
     protected ActInforStudentBinding initViewBinding() {
@@ -38,21 +50,74 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
         CreateMenu();
         dataBase();
         setupRecyclerView();
+        ActivityResultApi();
+        deleteItemStudent();
+        new ItemTouchHelper(simpleCallback).attachToRecyclerView(binding.recyclerStudent);
 
+    }
+
+    private void deleteItemStudent() {
+        simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, RecyclerView.ViewHolder
+                    viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                StudentEntity student = listStudents.get(position);
+                listStudents.remove(position);
+                studentDAO.deleteStudent(student);
+                Toast.makeText(InforStudentAct.this, "XÓA SINH VIÊN THÀNH CÔNG",
+                        Toast.LENGTH_SHORT).show();
+                studentAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, RecyclerView recyclerView,
+                                    RecyclerView.ViewHolder viewHolder, float dX,
+                                    float dY, int actionState, boolean isCurrentlyActive) {
+                new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY,
+                        actionState, isCurrentlyActive)
+                        .addBackgroundColor(ContextCompat.getColor(getApplicationContext(), R.color.red))
+                        .addSwipeLeftActionIcon(R.drawable.ic_delete)
+                        .addSwipeLeftLabel("XÓA")
+                        .setSwipeLeftLabelColor(ContextCompat.getColor(getApplicationContext(), R.color.white))
+                        .create()
+                        .decorate();
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        };
+
+    }
+
+    private void ActivityResultApi() {
+        myLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> setupRecyclerView());
     }
 
     private void setupRecyclerView() {
         studentAdapter = new StudentAdapter();
-        listStudents = new ArrayList<>();
         listStudents = studentDAO.getAllStudents();
-        studentAdapter.setData(listStudents);
+        studentAdapter.setData(listStudents, this::onClickStudent);
 
         binding.recyclerStudent.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerStudent.setAdapter(studentAdapter);
     }
 
+    private void onClickStudent(StudentEntity student) {
+        Intent intent = new Intent(this, CheckEditStudentAct.class);
+        Bundle data = new Bundle();
+        data.putSerializable(DATA_STUDENT, student);
+        intent.putExtras(data);
+        myLauncher.launch(intent);
+        Animatoo.INSTANCE.animateSlideDown(this);
+    }
+
     private void dataBase() {
-        studentDAO = Room.databaseBuilder(this, AppDatabase.class, "Student").
+        studentDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
                 allowMainThreadQueries()
                 .build().getStudentDAO();
     }
@@ -62,7 +127,7 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
     }
 
     private void CreateMenu() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Quản lý Sinh viên");
         setSupportActionBar(toolbar);
 
