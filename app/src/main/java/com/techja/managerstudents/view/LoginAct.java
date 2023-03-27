@@ -1,50 +1,42 @@
 package com.techja.managerstudents.view;
 
 
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
 import com.techja.managerstudents.databinding.ActLoginBinding;
-import com.techja.managerstudents.db.UserDAO;
-import com.techja.managerstudents.db.UserDatabase;
-import com.techja.managerstudents.db.UserEntity;
+import com.techja.managerstudents.dao.UserDAO;
+import com.techja.managerstudents.db.AppDatabase;
+import com.techja.managerstudents.model.UserEntity;
 
-public class LoginAct extends AppCompatActivity implements View.OnClickListener {
+public class LoginAct extends BaseAct<ActLoginBinding> {
     public static final String USER_NAME = "USER_NAME";
-    private ActLoginBinding binding;
     private UserDAO userDAO;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        initViews();
+    protected void initViews() {
         dataBase();
-    }
-
-    private void dataBase() {
-        userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
-                allowMainThreadQueries()
-                .build().getUserDAO();
-    }
-
-    private void initViews() {
         binding.btLogin.setOnClickListener(this);
         binding.tvSignup.setOnClickListener(this);
     }
 
+    private void dataBase() {
+        userDAO = Room.databaseBuilder(this, AppDatabase.class, "User").
+                allowMainThreadQueries()
+                .build().getUserDAO();
+    }
+
     @Override
-    public void onClick(View view) {
+    protected ActLoginBinding initViewBinding() {
+        return ActLoginBinding.inflate(getLayoutInflater());
+    }
+
+    @Override
+    protected void clickViews(View view) {
         if (view.getId() == R.id.tv_signup) {
             Intent intent = new Intent(this, RegisterAct.class);
             startActivity(intent);
@@ -60,8 +52,10 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSplit(this);
             } else {
-                Toast.makeText(this, "Tài khoản hoặc mật khẩu không hợp lệ!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Tài khoản hoặc mật khẩu không hợp lệ!",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
 }
+

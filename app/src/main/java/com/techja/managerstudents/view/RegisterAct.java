@@ -1,49 +1,40 @@
 package com.techja.managerstudents.view;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
 import com.techja.managerstudents.databinding.ActRegisterBinding;
-import com.techja.managerstudents.db.UserDAO;
-import com.techja.managerstudents.db.UserDatabase;
-import com.techja.managerstudents.db.UserEntity;
+import com.techja.managerstudents.db.AppDatabase;
+import com.techja.managerstudents.dao.UserDAO;
+import com.techja.managerstudents.model.UserEntity;
 
-public class RegisterAct extends AppCompatActivity implements View.OnClickListener {
-    public static final String FULL_NAME = "FULL_NAME";
-    private ActRegisterBinding binding;
+public class RegisterAct extends BaseAct<ActRegisterBinding> {
     private UserDAO userDAO;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActRegisterBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        initViews();
+    protected ActRegisterBinding initViewBinding() {
+        return ActRegisterBinding.inflate(getLayoutInflater());
+    }
+
+    protected void initViews() {
         dataBase();
-    }
-
-    private void dataBase() {
-        userDAO = Room.databaseBuilder(this, UserDatabase.class, "User").
-                allowMainThreadQueries()
-                .build().getUserDAO();
-    }
-
-    private void initViews() {
         binding.btRegister.setOnClickListener(this);
         binding.tvLogin.setOnClickListener(this);
     }
 
+    private void dataBase() {
+        userDAO = Room.databaseBuilder(this, AppDatabase.class, "User").
+                allowMainThreadQueries()
+                .build().getUserDAO();
+    }
 
     @Override
-    public void onClick(View view) {
+    protected void clickViews(View view) {
         if (view.getId() == R.id.bt_register) {
             String password = binding.edtPassword.getText().toString().trim();
             String username = binding.edtUser.getText().toString().trim();
@@ -60,7 +51,6 @@ public class RegisterAct extends AppCompatActivity implements View.OnClickListen
                 userDAO.registerUser(user);
                 Intent intent = new Intent(this, LoginAct.class);
                 Toast.makeText(this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                intent.putExtra(FULL_NAME, fullName);
                 startActivity(intent);
                 Animatoo.INSTANCE.animateSlideRight(this);
             }

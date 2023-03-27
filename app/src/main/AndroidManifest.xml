@@ -15,7 +15,7 @@
         android:theme="@style/Theme.ManagerStudents"
         tools:targetApi="31">
         <activity
-            android:name=".view.InforStudentAct"
+            android:name=".view.AddStudentsAct"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -29,7 +29,21 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".view.BaseAct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.HomeAct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.InforStudentAct"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

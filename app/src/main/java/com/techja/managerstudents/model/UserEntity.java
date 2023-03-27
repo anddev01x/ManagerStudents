@@ -1,10 +1,10 @@
-package com.techja.managerstudents.db;
+package com.techja.managerstudents.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "tbl_Users")
 public class UserEntity {
     @PrimaryKey(autoGenerate = true)
     @NonNull

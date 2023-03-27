@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
-    android:layout_height="match_parent">
+    app:cardCornerRadius="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,13 +18,14 @@
             android:id="@+id/ic_user"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/ic_mngstudents" />
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/ic_user_default" />
 
         <TextView
-            android:layout_marginStart="7dp"
             android:id="@+id/tv_sv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_toEndOf="@+id/ic_user"
             android:text="@string/tv_id"
             android:textColor="@color/black"
@@ -32,7 +36,7 @@
             android:id="@+id/tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="35dp"
             android:layout_toEndOf="@+id/tv_sv"
             android:text="@string/tv_idst"
             android:textColor="@color/red"
@@ -41,9 +45,9 @@
             tools:ignore="TextContrastCheck" />
 
         <TextView
-            android:layout_marginStart="7dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
             android:layout_toEndOf="@+id/ic_user"
             android:text="@string/tv_namee"
@@ -54,21 +58,22 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="20dp"
-            android:layout_marginStart="25dp"
             android:layout_toEndOf="@+id/tv_sv"
             android:text="@string/tv_fullname"
+            android:id="@+id/tv_name"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="40dp"
             android:layout_toEndOf="@+id/ic_user"
             android:text="@string/tv_birth"
             android:textColor="@color/black"
-            android:layout_marginStart="7dp"
             android:textSize="15sp"
             android:textStyle="bold" />
 
@@ -76,7 +81,7 @@
             android:id="@+id/tv_birthdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="40dp"
             android:layout_toEndOf="@+id/tv_sv"
             android:text="@string/tv_birthday"
@@ -86,18 +91,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="60dp"
             android:layout_toEndOf="@+id/ic_user"
-            android:layout_marginStart="7dp"
             android:text="@string/tv_idclass"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/tv_idClass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="60dp"
             android:layout_toEndOf="@+id/tv_sv"
             android:text="@string/tv_idclasss"

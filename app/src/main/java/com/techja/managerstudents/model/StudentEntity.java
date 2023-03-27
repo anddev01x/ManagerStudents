@@ -1,31 +1,38 @@
 package com.techja.managerstudents.model;
 
-public class Students {
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "tbl_Students")
+public class StudentEntity {
+    @PrimaryKey(autoGenerate = false)
+    @NonNull
     private String idStudent;
     private String fullName;
     private String birthdate;
-    private String idClass;
     private String gmail;
     private String address;
     private float gpa;
-    private int year;
+    private String idClass;
 
-    public Students(String idStudent, String fullName, String birthdate, String idClass, String gmail, String address, float gpa, int year) {
+    public StudentEntity(@NonNull String idStudent, String fullName, String birthdate,
+                         String gmail, String address, float gpa, String idClass) {
         this.idStudent = idStudent;
         this.fullName = fullName;
         this.birthdate = birthdate;
-        this.idClass = idClass;
         this.gmail = gmail;
         this.address = address;
         this.gpa = gpa;
-        this.year = year;
+        this.idClass = idClass;
     }
 
+    @NonNull
     public String getIdStudent() {
         return idStudent;
     }
 
-    public void setIdStudent(String idStudent) {
+    public void setIdStudent(@NonNull String idStudent) {
         this.idStudent = idStudent;
     }
 
@@ -75,13 +82,5 @@ public class Students {
 
     public void setGpa(float gpa) {
         this.gpa = gpa;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 }
