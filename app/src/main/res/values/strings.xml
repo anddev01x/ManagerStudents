@@ -13,7 +13,7 @@
     <string name="tv_name">HỌ TÊN</string>
     <string name="tv_username">Nguyễn Trung Chiêu</string>
     <string name="tv_logout">Đăng xuất</string>
-    <string name="txt_nameapp">Tên ứng dụng: Quản lý thông tin sinh viên</string>
+    <string name="txt_nameapp">Quản lý thông tin sinh viên</string>
     <string name="txt_namestudents">Sinh viên thực hiện: Nguyễn Trung Chiêu\nHoàng Văn Trường</string>
     <string name="tv_id">Mã SV:</string>
     <string name="tv_idst">A12345</string>
@@ -23,8 +23,15 @@
     <string name="tv_birthday">12/08/2001</string>
     <string name="tv_idclass">Mã lớp:</string>
     <string name="tv_idclasss">CNPM04</string>
-    <string name="edt_input">\tNhập tên sinh viên cần tìm kiếm</string>
-    <string name="tv_addStudent">THÊM SINH VIÊN</string>
+    <string name="edt_input_std">\tNhập tên sinh viên cần tìm kiếm</string>
+    <string name="edt_input_class">\tNhập tên lớp học cần tìm kiếm</string>
+    <string name="tv_addStudent">Thêm sinh viên</string>
     <string name="tv_done">THÊM</string>
     <string name="tv_selectAvt">Chọn ảnh đại diện</string>
+    <string name="tv_class">Chọn ảnh lớp học</string>
+    <string name="tv_lec">Giảng viên:</string>
+    <string name="tv_keyLec">Phan Thanh Sơn</string>
+    <string name="tv_idClass">Mã lớp:</string>
+    <string name="tv_nameClass">Tên lớp:</string>
+    <string name="tv_keyClass">Công nghệ phần mềm</string>
 </resources>

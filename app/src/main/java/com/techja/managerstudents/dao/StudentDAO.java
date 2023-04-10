@@ -19,15 +19,12 @@ public interface StudentDAO {
     @Insert
     void insertStudent(StudentEntity studentEntity);
 
-    @Query("SELECT idStudent FROM tbl_Students WHERE idStudent = :idStudent")
-    boolean getStudentById(String idStudent);
+    @Query("SELECT * FROM tbl_Students WHERE idStudent = :idStudent")
+    StudentEntity checkStudentById(String idStudent);
 
 
-    @Update
+    @Update()
     void upDateStudent(StudentEntity student);
-
-    @Query("SELECT idStudent FROM tbl_Students WHERE idStudent = :idStudent")
-    String getIdStudent(String idStudent);
 
     @Delete
     void deleteStudent(StudentEntity student);

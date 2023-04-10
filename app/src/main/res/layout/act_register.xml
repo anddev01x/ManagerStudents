@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="55dp"
         android:contentDescription="@string/img_university"
         app:srcCompat="@drawable/img_sharp" />
 
@@ -18,7 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="310dp"
+        android:layout_marginTop="300dp"
+        android:fontFamily="sans-serif"
         android:text="@string/tv_signup"
         android:textColor="#000000"
         android:textSize="23sp"
@@ -30,6 +31,7 @@
         android:layout_gravity="start|center_horizontal"
         android:layout_marginStart="60dp"
         android:layout_marginTop="345dp"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/tv_user"
         android:textColor="#6C6AFB"
         android:textSize="14sp"
@@ -46,12 +48,14 @@
         android:autofillHints=""
         android:inputType="textEmailAddress"
         tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|center_horizontal"
         android:layout_marginStart="60dp"
         android:layout_marginTop="405dp"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/tv_name"
         android:textColor="#6C6AFB"
         android:textSize="14sp"
@@ -75,6 +79,7 @@
         android:layout_gravity="start|center_horizontal"
         android:layout_marginStart="60dp"
         android:layout_marginTop="465dp"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/tv_password"
         android:textColor="#6C6AFB"
         android:textSize="14sp"
@@ -98,6 +103,7 @@
         android:layout_gravity="start|center_horizontal"
         android:layout_marginStart="60dp"
         android:layout_marginTop="525dp"
+        android:fontFamily="@font/inter_bold"
         android:text="@string/tv_repass"
         android:textColor="#6C6AFB"
         android:textSize="14sp"
@@ -122,6 +128,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="225dp"
         android:background="@drawable/custom_button"
+        android:fontFamily="@font/raleway_bold"
         android:text="@string/bt_signup"
         android:textSize="18sp"
         tools:ignore="DuplicateSpeakableTextCheck" />
@@ -132,6 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="55dp"
+        android:fontFamily="@font/inter_medium"
         android:text="@string/tv_signin"
         android:textColor="@color/black"
         android:textSize="15sp"

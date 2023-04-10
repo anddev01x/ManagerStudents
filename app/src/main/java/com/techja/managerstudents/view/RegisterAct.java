@@ -11,6 +11,7 @@ import com.techja.managerstudents.R;
 import com.techja.managerstudents.databinding.ActRegisterBinding;
 import com.techja.managerstudents.db.AppDatabase;
 import com.techja.managerstudents.dao.UserDAO;
+import com.techja.managerstudents.model.BaseAct;
 import com.techja.managerstudents.model.UserEntity;
 
 public class RegisterAct extends BaseAct<ActRegisterBinding> {
@@ -22,16 +23,11 @@ public class RegisterAct extends BaseAct<ActRegisterBinding> {
     }
 
     protected void initViews() {
-        dataBase();
+        userDAO = AppDatabase.getInstance(this).getUserDAO();
         binding.btRegister.setOnClickListener(this);
         binding.tvLogin.setOnClickListener(this);
     }
 
-    private void dataBase() {
-        userDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
-                allowMainThreadQueries()
-                .build().getUserDAO();
-    }
 
     @Override
     protected void clickViews(View view) {

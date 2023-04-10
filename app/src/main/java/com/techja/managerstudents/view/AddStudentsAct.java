@@ -1,8 +1,8 @@
 package com.techja.managerstudents.view;
 
-import androidx.room.Room;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -13,6 +13,7 @@ import com.techja.managerstudents.R;
 import com.techja.managerstudents.dao.StudentDAO;
 import com.techja.managerstudents.databinding.ActAddStudentsBinding;
 import com.techja.managerstudents.db.AppDatabase;
+import com.techja.managerstudents.model.BaseAct;
 import com.techja.managerstudents.model.StudentEntity;
 
 import java.text.DecimalFormat;
@@ -23,8 +24,8 @@ public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
 
     @Override
     protected void initViews() {
+        studentDAO = AppDatabase.getInstance(this).getStudentDAO();
         setSnpinner();
-        dataBase();
         binding.imgBack.setOnClickListener(this);
         binding.tvDone.setOnClickListener(this);
         binding.tvSelect.setOnClickListener(this);
@@ -37,11 +38,6 @@ public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
         binding.idSpinner.setAdapter(adapter);
     }
 
-    private void dataBase() {
-        studentDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
-                allowMainThreadQueries()
-                .build().getStudentDAO();
-    }
 
     @Override
     protected ActAddStudentsBinding initViewBinding() {
@@ -76,7 +72,7 @@ public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
             Toast.makeText(this, "Nhập thông tin cần thiết", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (studentDAO.getStudentById(idStudent)) {
+        if (studentDAO.checkStudentById(idStudent) != null) {
             Toast.makeText(this, "Trùng mã sinh viên", Toast.LENGTH_SHORT).show();
             return;
         }

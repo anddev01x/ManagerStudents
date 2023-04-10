@@ -26,10 +26,11 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="5dp"
             android:layout_weight="4"
+            android:fontFamily="@font/raleway_bold"
             android:gravity="center"
-            android:text="THÔNG TIN SINH VIÊN"
+            android:text="Thông tin sinh viên"
             android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -40,8 +41,8 @@
             android:layout_weight="2"
             android:gravity="center"
             android:text="CẬP NHẬT"
-            android:textColor="@color/blue"
-            android:textSize="16sp"
+            android:textColor="@color/red"
+            android:textSize="17sp"
             android:textStyle="bold"
             tools:ignore="DuplicateIds" />
 
@@ -52,15 +53,16 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_user_default" />
+        android:src="@drawable/ic_user" />
 
     <TextView
         android:id="@+id/tv_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/raleway_bold"
         android:text="Thay ảnh đại diện"
-        android:textColor="@color/blue"
+        android:textColor="@color/red"
         android:textSize="15sp"
         android:textStyle="italic" />
 
@@ -69,6 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Họ tên"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -91,11 +94,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Mã SV"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
     <EditText
+        android:focusable="false"
         android:id="@+id/edt_idStudent"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -104,6 +109,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#C7C7C8"
         android:background="@drawable/custom_edt"
         android:padding="15dp"
         android:textAlignment="textStart" />
@@ -113,6 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Ngày sinh"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -135,6 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Địa chỉ"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -157,6 +165,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Gmail"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -179,6 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="GPA"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -202,6 +212,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Lớp học"
         android:textColor="@color/black"
         android:textSize="16sp" />

@@ -26,10 +26,11 @@
             android:layout_marginStart="40dp"
             android:layout_marginTop="5dp"
             android:layout_weight="3"
+            android:fontFamily="@font/raleway_bold"
             android:gravity="center"
             android:text="@string/tv_addStudent"
             android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
@@ -38,10 +39,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
+            android:fontFamily="@font/raleway_bold"
             android:gravity="center"
             android:text="@string/tv_done"
             android:textColor="@color/blue"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold"
             tools:ignore="DuplicateIds" />
 
@@ -52,15 +54,16 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_user_default" />
+        android:src="@drawable/ic_user" />
 
     <TextView
         android:id="@+id/tv_select"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="@font/raleway_bold"
         android:text="@string/tv_selectAvt"
-        android:textColor="@color/blue"
+        android:textColor="@color/teal_700"
         android:textSize="15sp"
         android:textStyle="italic" />
 
@@ -69,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Họ tên"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -91,6 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Mã SV"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -113,6 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Ngày sinh"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -135,6 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Địa chỉ"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -157,6 +164,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Gmail"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -179,6 +187,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="GPA"
         android:textColor="@color/black"
         android:textSize="16sp" />
@@ -202,6 +211,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/raleway_bold"
         android:text="Lớp học"
         android:textColor="@color/black"
         android:textSize="16sp" />

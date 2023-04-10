@@ -3,6 +3,7 @@ package com.techja.managerstudents.view;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
@@ -25,6 +25,7 @@ import com.techja.managerstudents.adapter.StudentAdapter;
 import com.techja.managerstudents.dao.StudentDAO;
 import com.techja.managerstudents.databinding.ActInforStudentBinding;
 import com.techja.managerstudents.db.AppDatabase;
+import com.techja.managerstudents.model.BaseAct;
 import com.techja.managerstudents.model.StudentEntity;
 
 import java.util.List;
@@ -48,7 +49,7 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
 
     protected void initViews() {
         CreateMenu();
-        dataBase();
+        studentDAO = AppDatabase.getInstance(this).getStudentDAO();
         setupRecyclerView();
         ActivityResultApi();
         deleteItemStudent();
@@ -69,9 +70,9 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
                 int position = viewHolder.getAdapterPosition();
                 StudentEntity student = listStudents.get(position);
                 listStudents.remove(position);
+                Toast.makeText(InforStudentAct.this,
+                        "Xóa sinh viên thành công", Toast.LENGTH_SHORT).show();
                 studentDAO.deleteStudent(student);
-                Toast.makeText(InforStudentAct.this, "XÓA SINH VIÊN THÀNH CÔNG",
-                        Toast.LENGTH_SHORT).show();
                 studentAdapter.notifyDataSetChanged();
             }
 
@@ -95,14 +96,15 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
 
     private void ActivityResultApi() {
         myLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
-                result -> setupRecyclerView());
+                result -> {
+                    Log.i("RESULT", "ActivityResultApi: dsadsa");
+                    setupRecyclerView();
+                });
     }
 
     private void setupRecyclerView() {
-        studentAdapter = new StudentAdapter();
         listStudents = studentDAO.getAllStudents();
-        studentAdapter.setData(listStudents, this::onClickStudent);
-
+        studentAdapter = new StudentAdapter(listStudents, this::onClickStudent);
         binding.recyclerStudent.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerStudent.setAdapter(studentAdapter);
     }
@@ -114,12 +116,6 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
         intent.putExtras(data);
         myLauncher.launch(intent);
         Animatoo.INSTANCE.animateSlideDown(this);
-    }
-
-    private void dataBase() {
-        studentDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
-                allowMainThreadQueries()
-                .build().getStudentDAO();
     }
 
     @Override

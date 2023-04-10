@@ -20,11 +20,12 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     private List<StudentEntity> listStudents;
     private iClickItemStudentListener iClickItemStudentListener;
 
-    public void setData(List<StudentEntity> list, iClickItemStudentListener listener){
-        this.listStudents = list;
+    public StudentAdapter(List<StudentEntity> listStudents, iClickItemStudentListener listener) {
+        this.listStudents = listStudents;
         this.iClickItemStudentListener = listener;
         notifyDataSetChanged();
     }
+
 
     @NonNull
     @Override
@@ -37,7 +38,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int i) {
         final StudentEntity student = listStudents.get(i);
-        if(student == null){
+        if (student == null) {
             return;
         }
         holder.tvStudentId.setText(student.getIdStudent());
@@ -50,13 +51,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
     @Override
     public int getItemCount() {
-        if(listStudents != null){
+        if (listStudents != null) {
             return listStudents.size();
         }
         return 0;
     }
 
-    public class StudentViewHolder extends RecyclerView.ViewHolder{
+    public class StudentViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvStudentId;
         private final TextView tvStudentName;
         private final CardView cardView;
@@ -65,7 +66,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardView = itemView.findViewById(R.id.layoutItem);
+            cardView = itemView.findViewById(R.id.layout_item_student);
             tvStudentId = itemView.findViewById(R.id.tv_id);
             tvStudentName = itemView.findViewById(R.id.tv_name);
             tvStudentBirthdate = itemView.findViewById(R.id.tv_birthdate);

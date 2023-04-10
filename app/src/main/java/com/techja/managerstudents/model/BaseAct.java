@@ -1,4 +1,4 @@
-package com.techja.managerstudents.view;
+package com.techja.managerstudents.model;
 
 import android.os.Bundle;
 import android.view.View;

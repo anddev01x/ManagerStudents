@@ -15,6 +15,27 @@
         android:theme="@style/Theme.ManagerStudents"
         tools:targetApi="31">
         <activity
+            android:name=".view.InforClassAct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.AddClassAct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.SplashLoadingAct"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".view.CheckEditStudentAct"
             android:exported="false">
             <meta-data
@@ -36,7 +57,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".view.BaseAct"
+            android:name=".model.BaseAct"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -83,6 +104,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -7,13 +7,13 @@ import android.net.Uri;
 import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.room.Room;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
 import com.techja.managerstudents.databinding.ActHomeBinding;
 import com.techja.managerstudents.db.AppDatabase;
 import com.techja.managerstudents.dao.UserDAO;
+import com.techja.managerstudents.model.BaseAct;
 
 public class HomeAct extends BaseAct<ActHomeBinding> {
     private UserDAO userDAO;
@@ -24,7 +24,7 @@ public class HomeAct extends BaseAct<ActHomeBinding> {
     }
 
     protected void initViews() {
-        dataBase();
+        userDAO = AppDatabase.getInstance(this).getUserDAO();
         setText();
         binding.imgviewWebsite.setOnClickListener(this);
         binding.imgviewDetail.setOnClickListener(this);
@@ -40,11 +40,6 @@ public class HomeAct extends BaseAct<ActHomeBinding> {
         binding.tvUser.setText(setUserName);
     }
 
-    private void dataBase() {
-        userDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
-                allowMainThreadQueries()
-                .build().getUserDAO();
-    }
 
     @Override
     protected void clickViews(View view) {
@@ -66,7 +61,12 @@ public class HomeAct extends BaseAct<ActHomeBinding> {
         if (view.getId() == R.id.imgview_mngstudent) {
             Intent intent = new Intent(this, InforStudentAct.class);
             startActivity(intent);
-            Animatoo.INSTANCE.animateZoom(HomeAct.this);
+            Animatoo.INSTANCE.animateZoom(this);
+        }
+        if (view.getId() == R.id.imgview_mngclass) {
+            Intent intent = new Intent(this, InforClassAct.class);
+            startActivity(intent);
+            Animatoo.INSTANCE.animateZoom(this);
         }
     }
 

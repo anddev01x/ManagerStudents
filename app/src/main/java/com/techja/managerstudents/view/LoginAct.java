@@ -12,6 +12,7 @@ import com.techja.managerstudents.R;
 import com.techja.managerstudents.databinding.ActLoginBinding;
 import com.techja.managerstudents.dao.UserDAO;
 import com.techja.managerstudents.db.AppDatabase;
+import com.techja.managerstudents.model.BaseAct;
 import com.techja.managerstudents.model.UserEntity;
 
 public class LoginAct extends BaseAct<ActLoginBinding> {
@@ -19,15 +20,9 @@ public class LoginAct extends BaseAct<ActLoginBinding> {
     private UserDAO userDAO;
 
     protected void initViews() {
-        dataBase();
+        userDAO = AppDatabase.getInstance(this).getUserDAO();
         binding.btLogin.setOnClickListener(this);
         binding.tvSignup.setOnClickListener(this);
-    }
-
-    private void dataBase() {
-        userDAO = Room.databaseBuilder(this, AppDatabase.class, "ManagerStudent").
-                allowMainThreadQueries()
-                .build().getUserDAO();
     }
 
     @Override
@@ -58,4 +53,3 @@ public class LoginAct extends BaseAct<ActLoginBinding> {
         }
     }
 }
-
