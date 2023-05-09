@@ -1,5 +1,3 @@
-# ManagerStudents
-
 onClickItem trong Adapter.RecyclerView
         holder.cardView.setOnClickListener(view -> iClickItemStudentListener.onClickItemStudent(student));
 
