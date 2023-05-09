@@ -1,4 +1,4 @@
-My project use recycler view, room database
+My project use recycler view, room database, scrum model
 Functions: View, update, delete, add, search view
 - View
 - Update: Choose item then u can view and update item
