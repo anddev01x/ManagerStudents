@@ -10,21 +10,27 @@ import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
+import com.techja.managerstudents.dao.ClassRoomDAO;
 import com.techja.managerstudents.dao.StudentDAO;
 import com.techja.managerstudents.databinding.ActAddStudentsBinding;
 import com.techja.managerstudents.db.AppDatabase;
 import com.techja.managerstudents.model.BaseAct;
+import com.techja.managerstudents.model.ClassroomEntity;
 import com.techja.managerstudents.model.StudentEntity;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
     private StudentDAO studentDAO;
+    private ClassRoomDAO classRoomDAO;
 
 
     @Override
     protected void initViews() {
         studentDAO = AppDatabase.getInstance(this).getStudentDAO();
+        classRoomDAO = AppDatabase.getInstance(this).getClassRoomDAO();
         setSnpinner();
         binding.imgBack.setOnClickListener(this);
         binding.tvDone.setOnClickListener(this);
@@ -32,9 +38,13 @@ public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
     }
 
     private void setSnpinner() {
-        String[] idClass = {"CNPM01", "CNPM02", "CNPM03", "CNPM04"};
+        List<ClassroomEntity> listClass = classRoomDAO.getAllCLass();
+        List<String> listIdClass = new ArrayList<>();
+        for(ClassroomEntity classroom :listClass){
+            listIdClass.add(classroom.getIdClass());
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, idClass);
+                android.R.layout.simple_spinner_item, listIdClass);
         binding.idSpinner.setAdapter(adapter);
     }
 

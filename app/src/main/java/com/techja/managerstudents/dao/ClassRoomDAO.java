@@ -30,4 +30,6 @@ public interface ClassRoomDAO {
 
     @Query("SELECT * FROM tbl_class ORDER BY idClass ASC")
     List<ClassroomEntity> sortClassByName();
+
+
 }
