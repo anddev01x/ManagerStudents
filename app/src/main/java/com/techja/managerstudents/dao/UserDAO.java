@@ -18,6 +18,9 @@ public interface UserDAO {
     @Query("SELECT fullName FROM tbl_Users WHERE username = :username")
     String getFullNameByUserName(String username);
 
+    @Query("SELECT * FROM tbl_Users WHERE username = :username")
+    UserEntity getUserByUserName(String username);
+
     @Insert
     void registerUser(UserEntity userEntity);
 }

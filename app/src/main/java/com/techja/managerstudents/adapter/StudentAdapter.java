@@ -1,5 +1,6 @@
 package com.techja.managerstudents.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +19,27 @@ import java.util.List;
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
 
     private List<StudentEntity> listStudents;
-    private iClickItemStudentListener iClickItemStudentListener;
+    private final iClickItemStudentListener iClickItemStudentListener;
 
+    @SuppressLint("NotifyDataSetChanged")
     public StudentAdapter(List<StudentEntity> listStudents, iClickItemStudentListener listener) {
         this.listStudents = listStudents;
         this.iClickItemStudentListener = listener;
         notifyDataSetChanged();
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setFilterList(List<StudentEntity> filterList) {
+        this.listStudents = filterList;
+        notifyDataSetChanged();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setSortItem(List<StudentEntity> sortItem) {
+        this.listStudents = sortItem;
+        notifyDataSetChanged();
+    }
+
 
 
     @NonNull
@@ -57,7 +72,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         return 0;
     }
 
-    public class StudentViewHolder extends RecyclerView.ViewHolder {
+    public static class StudentViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvStudentId;
         private final TextView tvStudentName;
         private final CardView cardView;

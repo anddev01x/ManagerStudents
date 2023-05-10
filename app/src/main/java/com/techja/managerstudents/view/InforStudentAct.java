@@ -1,5 +1,6 @@
 package com.techja.managerstudents.view;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -28,6 +30,7 @@ import com.techja.managerstudents.db.AppDatabase;
 import com.techja.managerstudents.model.BaseAct;
 import com.techja.managerstudents.model.StudentEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,25 +51,59 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
     }
 
     protected void initViews() {
-        CreateMenu();
+        createMenu();
         studentDAO = AppDatabase.getInstance(this).getStudentDAO();
-        setupRecyclerView();
+        setUpRecyclerView();
+        searchView();
         ActivityResultApi();
         deleteItemStudent();
         new ItemTouchHelper(simpleCallback).attachToRecyclerView(binding.recyclerStudent);
 
     }
 
-    private void deleteItemStudent() {
-        simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+    private void searchView() {
+        binding.searchView.clearFocus();
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, RecyclerView.ViewHolder
-                    viewHolder, RecyclerView.ViewHolder target) {
+            public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+            public boolean onQueryTextChange(String text) {
+                filterList(text);
+                return true;
+            }
+        });
+    }
+
+    private void filterList(String text) {
+        List<StudentEntity> filterList = new ArrayList<>();
+        for (StudentEntity student : listStudents) {
+            if (student.getIdStudent().toLowerCase().contains(text.toLowerCase()) ||
+                    student.getFullName().toLowerCase().contains(text.toLowerCase()) ||
+                    student.getIdClass().toLowerCase().contains(text.toLowerCase())) {
+                filterList.add(student);
+            }
+        }
+        if (filterList.isEmpty()) {
+            Toast.makeText(this, "Không có kết quả", Toast.LENGTH_SHORT).show();
+        } else {
+            studentAdapter.setFilterList(filterList);
+        }
+    }
+
+    private void deleteItemStudent() {
+        simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder
+                    viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 StudentEntity student = listStudents.get(position);
                 listStudents.remove(position);
@@ -77,8 +114,8 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
             }
 
             @Override
-            public void onChildDraw(@NonNull Canvas c, RecyclerView recyclerView,
-                                    RecyclerView.ViewHolder viewHolder, float dX,
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView,
+                                    @NonNull RecyclerView.ViewHolder viewHolder, float dX,
                                     float dY, int actionState, boolean isCurrentlyActive) {
                 new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY,
                         actionState, isCurrentlyActive)
@@ -97,12 +134,12 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
     private void ActivityResultApi() {
         myLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    Log.i("RESULT", "ActivityResultApi: dsadsa");
-                    setupRecyclerView();
+                    Log.i("RESULT", "ActivityResultApi: Back");
+                    InforStudentAct.this.setUpRecyclerView();
                 });
     }
 
-    private void setupRecyclerView() {
+    private void setUpRecyclerView() {
         listStudents = studentDAO.getAllStudents();
         studentAdapter = new StudentAdapter(listStudents, this::onClickStudent);
         binding.recyclerStudent.setLayoutManager(new LinearLayoutManager(this));
@@ -115,14 +152,14 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
         data.putSerializable(DATA_STUDENT, student);
         intent.putExtras(data);
         myLauncher.launch(intent);
-        Animatoo.INSTANCE.animateSlideDown(this);
+        Animatoo.INSTANCE.animateZoom(this);
     }
 
     @Override
     protected void clickViews(View view) {
     }
 
-    private void CreateMenu() {
+    private void createMenu() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Quản lý Sinh viên");
         setSupportActionBar(toolbar);
@@ -143,6 +180,10 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
         return true;
     }
 
+    @Override
+    public void onBackPressed() {
+        BackHome();
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -153,7 +194,15 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
         } else if (R.id.exit == item.getItemId()) {
             logOut();
         }
+        else if (R.id.sort == item.getItemId()) {
+            sortItemStudent();
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void sortItemStudent() {
+        listStudents = studentDAO.sortStudentById();
+        studentAdapter.setSortItem(listStudents);
     }
 
     private void BackHome() {
@@ -165,7 +214,7 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
     private void addStudents() {
         Intent intent = new Intent(this, AddStudentsAct.class);
         startActivity(intent);
-        Animatoo.INSTANCE.animateSlideLeft(this);
+        Animatoo.INSTANCE.animateZoom(this);
     }
 
     private void logOut() {

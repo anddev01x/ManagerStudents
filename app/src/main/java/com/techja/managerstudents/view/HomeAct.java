@@ -14,14 +14,17 @@ import com.techja.managerstudents.databinding.ActHomeBinding;
 import com.techja.managerstudents.db.AppDatabase;
 import com.techja.managerstudents.dao.UserDAO;
 import com.techja.managerstudents.model.BaseAct;
+import com.techja.managerstudents.model.UserEntity;
 
 public class HomeAct extends BaseAct<ActHomeBinding> {
+    private static final String TEXT_VIEW_KEY = "TEXT_VIEW_KEY";
     private UserDAO userDAO;
 
     @Override
     protected ActHomeBinding initViewBinding() {
         return ActHomeBinding.inflate(getLayoutInflater());
     }
+
 
     protected void initViews() {
         userDAO = AppDatabase.getInstance(this).getUserDAO();
@@ -33,11 +36,18 @@ public class HomeAct extends BaseAct<ActHomeBinding> {
         binding.tvLogout.setOnClickListener(this);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setText();
+    }
+
     private void setText() {
-        Intent intent = getIntent();
-        String userName = intent.getStringExtra(USER_NAME);
-        String setUserName = userDAO.getFullNameByUserName(userName);
-        binding.tvUser.setText(setUserName);
+        String userName = getIntent().getStringExtra(USER_NAME);
+        if (userName != null) {
+            UserEntity user = userDAO.getUserByUserName(userName);
+            binding.tvUser.setText(user.getFullName());
+        }
     }
 
 

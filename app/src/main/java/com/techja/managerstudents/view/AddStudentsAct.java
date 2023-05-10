@@ -49,7 +49,7 @@ public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
         if (R.id.img_back == view.getId()) {
             Intent intent = new Intent(this, InforStudentAct.class);
             startActivity(intent);
-            Animatoo.INSTANCE.animateSlideRight(this);
+//            Animatoo.INSTANCE.animateZoom(this);
         }
         if (R.id.tv_done == view.getId()) {
             addStudents();
@@ -81,19 +81,28 @@ public class AddStudentsAct extends BaseAct<ActAddStudentsBinding> {
             return;
         } else {
             try {
+
                 float gpaFloat = Float.parseFloat(gpa);
                 StudentEntity student = new StudentEntity(idStudent, fullName, birthdate, gmail,
                         address, (float) Double.parseDouble(df.format(gpaFloat)), idClassroom);
-                Toast.makeText(this, "Thêm sinh viên thành công", Toast.LENGTH_SHORT).show();
                 studentDAO.insertStudent(student);
-                Intent intent = new Intent(this, InforStudentAct.class);
+                Intent intent = new Intent(AddStudentsAct.this, SplashLoadingAct.class);
                 startActivity(intent);
-                Animatoo.INSTANCE.animateSlideRight(this);
+
+                // Show Splash loading...
+                new Handler().postDelayed(() -> {
+                    // Do something
+                    Intent intent1 = new Intent(AddStudentsAct.this,
+                            InforStudentAct.class);
+                    Toast.makeText(AddStudentsAct.this,
+                            "Thêm sinh viên thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(intent1);
+                    finish();
+                }, 800);
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "GPA không hợp lệ", Toast.LENGTH_SHORT).show();
             }
         }
 
     }
-
 }

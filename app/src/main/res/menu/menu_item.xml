@@ -14,15 +14,22 @@
                 android:title="Trang chủ"
                 app:showAsAction="never" />
             <item
+                android:id="@+id/sort"
+                android:icon="@drawable/ic_sort"
+                android:title="Sắp xếp"
+                app:showAsAction="never" />
+            <item
                 android:id="@+id/add"
                 android:icon="@drawable/ic_add"
                 android:title="Thêm"
                 app:showAsAction="never" />
+
             <item
                 android:id="@+id/exit"
                 android:icon="@drawable/ic_exit"
                 android:title="Đăng xuất"
                 app:showAsAction="never" />
+
         </menu>
 
 

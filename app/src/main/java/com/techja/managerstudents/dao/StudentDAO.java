@@ -29,5 +29,8 @@ public interface StudentDAO {
     @Delete
     void deleteStudent(StudentEntity student);
 
+    @Query("SELECT * FROM tbl_Students ORDER BY idStudent ASC")
+    List<StudentEntity> sortStudentById();
+
 
 }

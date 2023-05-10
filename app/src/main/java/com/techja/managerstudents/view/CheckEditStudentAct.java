@@ -3,7 +3,6 @@ package com.techja.managerstudents.view;
 import static com.techja.managerstudents.view.InforStudentAct.DATA_STUDENT;
 
 import android.content.Intent;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -70,7 +69,7 @@ public class CheckEditStudentAct extends BaseAct<ActCheckEditStudentBinding> {
         if (R.id.img_back == view.getId()) {
             Intent intent = new Intent(this, InforStudentAct.class);
             startActivity(intent);
-            Animatoo.INSTANCE.animateSlideUp(this);
+//            Animatoo.INSTANCE.animateSlideUp(this);
         }
         if (R.id.tv_update == view.getId()) {
             UpdateStudent();
