@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
 import com.techja.managerstudents.dao.ClassRoomDAO;
 import com.techja.managerstudents.databinding.ActAddClassBinding;
@@ -62,15 +61,12 @@ public class AddClassAct extends BaseAct<ActAddClassBinding> {
         startActivity(intent);
 
         // Show Splash loading...
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Do something
-                Intent intent = new Intent(AddClassAct.this, InforClassAct.class);
-                Toast.makeText(AddClassAct.this, "Thêm lớp học thành công", Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            // Do something
+            Intent intent1 = new Intent(AddClassAct.this, InforClassAct.class);
+            Toast.makeText(AddClassAct.this, "Thêm lớp học thành công", Toast.LENGTH_SHORT).show();
+            startActivity(intent1);
+            finish();
         }, 800);
 
     }
