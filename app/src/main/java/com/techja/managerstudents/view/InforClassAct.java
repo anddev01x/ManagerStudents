@@ -88,7 +88,7 @@ public class InforClassAct extends BaseAct<ActInforClassBinding> {
         if (filterList.isEmpty()) {
             Toast.makeText(this, "Không có kết quả", Toast.LENGTH_SHORT).show();
         } else {
-            classAdapter.setFilterList(filterList);
+            classAdapter.setFilterList(this, filterList);
         }
     }
 
@@ -184,7 +184,7 @@ public class InforClassAct extends BaseAct<ActInforClassBinding> {
 
     private void sortItemClass() {
         listClass = classDAO.sortClassByName();
-        classAdapter.setSortItem(listClass);
+        classAdapter.setSortItem(this, listClass);
     }
 
     private void BackHome() {
@@ -217,7 +217,7 @@ public class InforClassAct extends BaseAct<ActInforClassBinding> {
 
     private void setUpRecyclerView() {
         listClass = classDAO.getAllCLass();
-        classAdapter = new ClassAdapter(listClass, this::onClickClass);
+        classAdapter = new ClassAdapter(this, listClass, this::onClickClass);
         binding.recyclerClass.setLayoutManager(new LinearLayoutManager(this));
         listClass.add(new ClassroomEntity("CNPM", "Cong Nghe Phan Mem"
                 ,"Phan Thanh Son"));

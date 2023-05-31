@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -51,8 +52,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StudentViewHolder holder, int i) {
-        final StudentEntity student = listStudents.get(i);
+    public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
+        final StudentEntity student = listStudents.get(position);
         if (student == null) {
             return;
         }
@@ -61,7 +62,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.tvStudentBirthdate.setText(student.getBirthdate());
         holder.tvIdClass.setText(student.getIdClass());
 
-        holder.cardView.setOnClickListener(view -> iClickItemStudentListener.onClickItemStudent(student));
+        holder.cardView.setOnClickListener(view -> {
+            view.startAnimation(AnimationUtils.loadAnimation(view.getContext(),
+                    androidx.appcompat.R.anim.abc_fade_in));
+            iClickItemStudentListener.onClickItemStudent(student);
+        });
     }
 
     @Override

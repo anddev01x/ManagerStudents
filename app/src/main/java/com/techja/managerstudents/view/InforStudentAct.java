@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -139,11 +140,15 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
                 });
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void setUpRecyclerView() {
         listStudents = studentDAO.getAllStudents();
         studentAdapter = new StudentAdapter(listStudents, this::onClickStudent);
-        binding.recyclerStudent.setLayoutManager(new LinearLayoutManager(this));
         binding.recyclerStudent.setAdapter(studentAdapter);
+//        DividerItemDecoration decoration = new DividerItemDecoration(this,
+//                DividerItemDecoration.VERTICAL);
+//        decoration.setDrawable(getDrawable(R.drawable.divider));
+//        binding.recyclerStudent.addItemDecoration(decoration);
     }
 
     private void onClickStudent(StudentEntity student) {

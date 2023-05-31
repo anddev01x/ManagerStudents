@@ -1,9 +1,11 @@
 package com.techja.managerstudents.adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,22 +21,26 @@ import java.util.List;
 public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHolder> {
 
     private List<ClassroomEntity> listClass;
+    private Context context;
     private final iClickItemClassListener iClickItemClassListener;
 
     @SuppressLint("NotifyDataSetChanged")
-    public ClassAdapter(List<ClassroomEntity> listClass, iClickItemClassListener listener) {
+    public ClassAdapter(Context context, List<ClassroomEntity> listClass, iClickItemClassListener listener) {
+        this.context = context;
         this.listClass = listClass;
         this.iClickItemClassListener = listener;
         notifyDataSetChanged();
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setFilterList(List<ClassroomEntity> filterList) {
+    public void setFilterList(Context context, List<ClassroomEntity> filterList) {
+        this.context = context;
         this.listClass = filterList;
         notifyDataSetChanged();
     }
     @SuppressLint("NotifyDataSetChanged")
-    public void setSortItem(List<ClassroomEntity> sortItem) {
+    public void setSortItem(Context context, List<ClassroomEntity> sortItem) {
+        this.context = context;
         this.listClass = sortItem;
         notifyDataSetChanged();
     }
@@ -43,7 +49,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
     @NonNull
     @Override
     public ClassViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_class,
+        View view = LayoutInflater.from(context).inflate(R.layout.item_class,
                 parent, false);
         return new ClassViewHolder(view);
     }
@@ -58,7 +64,11 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         holder.tvNameClass.setText(classroom.getNameClass());
         holder.tvLecturer.setText(classroom.getNameLecturers());
 
-        holder.cardView.setOnClickListener(view -> iClickItemClassListener.onClickItemClass(classroom));
+        holder.cardView.setOnClickListener(view -> {
+            view.startAnimation(AnimationUtils.loadAnimation(view.getContext(),
+                    androidx.appcompat.R.anim.abc_fade_in));
+            iClickItemClassListener.onClickItemClass(classroom);
+        });
 
     }
 
