@@ -140,5 +140,17 @@
         android:padding="15dp"
         android:textAlignment="textStart" />
 
+    <TextView
+        android:id="@+id/tv_listStudents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="Danh sách sinh viên"
+        android:textColor="@color/teal_700"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
 
 </LinearLayout>

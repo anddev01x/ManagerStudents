@@ -17,7 +17,6 @@ import com.techja.managerstudents.model.BaseAct;
 import com.techja.managerstudents.model.UserEntity;
 
 public class HomeAct extends BaseAct<ActHomeBinding> {
-    private static final String TEXT_VIEW_KEY = "TEXT_VIEW_KEY";
     private UserDAO userDAO;
 
     @Override

@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
+
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.techja.managerstudents.R;
 import com.techja.managerstudents.dao.ClassRoomDAO;
@@ -17,6 +18,7 @@ import com.techja.managerstudents.model.BaseAct;
 import com.techja.managerstudents.model.ClassroomEntity;
 
 public class CheckEditClassAct extends BaseAct<ActCheckEditClassBinding> {
+    public static final String ID_CLASS = "ID_CLASS";
     private ClassRoomDAO classDAO;
     private ClassroomEntity oldClass;
 
@@ -27,7 +29,10 @@ public class CheckEditClassAct extends BaseAct<ActCheckEditClassBinding> {
         classDAO = AppDatabase.getInstance(this).getClassRoomDAO();
         binding.imgBackHome.setOnClickListener(this);
         binding.tvUpdateClass.setOnClickListener(this);
+        binding.tvListStudents.setOnClickListener(this);
     }
+
+
 
     private void getData() {
         oldClass = (ClassroomEntity) getIntent().getSerializableExtra(DATA_CLASS);
@@ -41,6 +46,13 @@ public class CheckEditClassAct extends BaseAct<ActCheckEditClassBinding> {
         }
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, InforClassAct.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void clickViews(View view) {
         if (R.id.img_back_home == view.getId()) {
@@ -50,6 +62,12 @@ public class CheckEditClassAct extends BaseAct<ActCheckEditClassBinding> {
         }
         if (R.id.tv_update_class == view.getId()) {
             UpdateClass();
+        }
+        if (R.id.tv_listStudents == view.getId()) {
+            String idClass = binding.edtIdClass.getText().toString();
+            Intent intent = new Intent(this, StudentsInClass.class);
+            intent.putExtra(ID_CLASS, idClass);
+            startActivity(intent);
         }
     }
 

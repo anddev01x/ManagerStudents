@@ -17,9 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -145,6 +143,7 @@ public class InforStudentAct extends BaseAct<ActInforStudentBinding> {
         listStudents = studentDAO.getAllStudents();
         studentAdapter = new StudentAdapter(listStudents, this::onClickStudent);
         binding.recyclerStudent.setAdapter(studentAdapter);
+//Deco Recycler View
 //        DividerItemDecoration decoration = new DividerItemDecoration(this,
 //                DividerItemDecoration.VERTICAL);
 //        decoration.setDrawable(getDrawable(R.drawable.divider));

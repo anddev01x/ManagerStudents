@@ -14,7 +14,7 @@
     <string name="tv_username">Nguyễn Trung Chiêu</string>
     <string name="tv_logout">Đăng xuất</string>
     <string name="txt_nameapp">Quản lý thông tin sinh viên</string>
-    <string name="txt_namestudents">Sinh viên thực hiện: Nguyễn Trung Chiêu\nHoàng Văn Trường</string>
+    <string name="txt_namestudents">Sinh viên thực hiện: Nguyễn Trung Chiêu</string>
     <string name="tv_id">Mã SV:</string>
     <string name="tv_idst">A12345</string>
     <string name="tv_namee">Họ tên:</string>

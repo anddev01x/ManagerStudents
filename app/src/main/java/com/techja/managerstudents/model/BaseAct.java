@@ -14,7 +14,7 @@ public abstract class BaseAct<T extends ViewBinding> extends AppCompatActivity i
     protected T binding;
 
     @Override
-    protected final void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = initViewBinding();
         setContentView(binding.getRoot());

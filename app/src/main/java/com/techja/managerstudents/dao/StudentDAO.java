@@ -32,5 +32,7 @@ public interface StudentDAO {
     @Query("SELECT * FROM tbl_Students ORDER BY idStudent ASC")
     List<StudentEntity> sortStudentById();
 
+    @Query("SELECT * FROM tbl_Students WHERE idClass = :idClass ORDER BY idStudent ASC")
+    List<StudentEntity> listStudents(String idClass);
 
 }
