@@ -1,6 +1,7 @@
 My project use recycler view, room database, scrum model
 Functions: View, update, delete, add, search view
-- View
+- View class, students
+- View students in class
 - Update: Choose item then u can view and update item
 - Delete: swipe left to delete item
 - Add: u can add item to list
